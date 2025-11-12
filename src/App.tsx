@@ -11,6 +11,7 @@ import Purchasing from "./pages/Purchasing";
 import Sales from "./pages/Sales";
 import Campuses from "./pages/Campuses";
 import Reports from "./pages/Reports";
+import Inventory from "./pages/Inventory";
 import NotFound from "./pages/NotFound";
 import DashboardLayout from "./components/DashboardLayout";
 
@@ -77,6 +78,14 @@ const App = () => (
             element={
               <DashboardLayout>
                 <Reports />
+              </DashboardLayout>
+            }
+          />
+          <Route
+            path="/inventory"
+            element={
+              <DashboardLayout>
+                <Inventory />
               </DashboardLayout>
             }
           />

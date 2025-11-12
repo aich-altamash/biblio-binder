@@ -32,6 +32,7 @@ const menuItems = [
   { title: "Products", url: "/products", icon: Package },
   { title: "Suppliers", url: "/suppliers", icon: Users },
   { title: "Purchasing", url: "/purchasing", icon: ShoppingCart },
+  { title: "Inventory", url: "/inventory", icon: PackageOpen },
   { title: "Sales", url: "/sales", icon: FileText },
   { title: "Campuses", url: "/campuses", icon: Building2 },
   { title: "Reports", url: "/reports", icon: TrendingUp },
