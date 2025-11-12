@@ -114,19 +114,46 @@ The application will be available at `http://localhost:5173`
 
 ### Database Setup
 
-The database schema will be automatically created when you enable Lovable Cloud. The system includes:
+**IMPORTANT:** You must run the database migration before using the application.
 
-- **products**: Book catalog
+1. **Open Supabase SQL Editor**
+   - Go to your Supabase project at [supabase.com](https://supabase.com)
+   - Navigate to **SQL Editor** in the left sidebar
+
+2. **Run the Migration**
+   - Open the `database-setup.sql` file in this repository
+   - Copy the entire SQL script
+   - Paste it into the SQL Editor
+   - Click **Run** to execute
+
+3. **Create Your Admin Account**
+   - Go to your application at `/auth` and sign up
+   - After signup, return to Supabase Dashboard
+   - Go to **Authentication** → **Users**
+   - Copy your **User ID**
+   - Run this SQL in the SQL Editor:
+   ```sql
+   INSERT INTO public.user_roles (user_id, role) 
+   VALUES ('paste-your-user-id-here', 'admin');
+   ```
+
+4. **Verify Setup**
+   - Log out and log back in
+   - You should now have access to all features
+
+The database includes these tables:
+- **products**: Book catalog with ISBN/SKU
 - **categories**: Product categorization
-- **suppliers**: Supplier information
-- **purchase_orders**: PO management
+- **suppliers**: Supplier information and terms
+- **purchase_orders**: Purchase order management
 - **purchase_items**: PO line items
-- **batches**: Inventory batches
-- **inventory_logs**: Stock movement tracking
-- **sales_invoices**: Sales orders
-- **sales_items**: Invoice line items
-- **campuses**: Campus locations
-- **system_settings**: Application configuration
+- **batches**: Batch-level inventory tracking
+- **inventory_logs**: Complete stock movement audit trail
+- **sales_invoices**: Sales orders and invoicing
+- **sales_items**: Invoice line items with profit calculation
+- **campuses**: School campus/customer locations
+- **system_settings**: Company and warehouse configuration
+- **user_roles**: Role-based access control
 
 ## 📖 Usage Guide
 
@@ -285,14 +312,21 @@ Future enhancements:
 
 ## 🐛 Troubleshooting
 
+**Database tables not found?**
+- Make sure you've run the `database-setup.sql` script in Supabase SQL Editor
+- Check for any errors when running the migration
+- Verify all tables are created by going to Table Editor in Supabase
+
 **Can't log in?**
-- Ensure you've created a user account in Lovable Cloud
+- Ensure you've created a user account at `/auth`
+- Make sure you've added your user to the `user_roles` table as admin
 - Check that environment variables are set correctly
 
 **Data not loading?**
 - Check browser console for errors
 - Verify Lovable Cloud is enabled and running
 - Ensure RLS policies are properly configured
+- Confirm you're logged in as an admin user
 
 **PDF not downloading?**
 - Check browser popup blocker settings
