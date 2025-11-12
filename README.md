@@ -77,40 +77,59 @@ A comprehensive, modern web-based inventory management system specifically desig
 - 🔄 **Real-time Updates**: Instant data synchronization
 - 🛡️ **Type Safety**: Full TypeScript implementation
 
-## 🚀 Getting Started
+## 🚀 How to Run This Project
 
 ### Prerequisites
 
-- Node.js 18+ and npm installed
-- Git for version control
+- **Node.js 18+** and npm (or bun) installed
+- A **Lovable Cloud** account with this project
 
-### Installation
+### Quick Start (3 Steps)
 
-1. **Clone the repository**
-```bash
-git clone <YOUR_GIT_URL>
-cd <YOUR_PROJECT_NAME>
-```
-
-2. **Install dependencies**
+**1. Install Dependencies**
 ```bash
 npm install
 ```
 
-3. **Set up environment variables**
-
-Create a `.env` file in the root directory with your Supabase credentials:
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
-```
-
-4. **Start the development server**
+**2. Start the Development Server**
 ```bash
 npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
+
+**3. Set Up the Database** (First time only)
+- See the [Database Setup](#database-setup) section below
+
+### Environment Variables
+
+Your `.env` file is already configured with Lovable Cloud (Supabase) credentials:
+```env
+VITE_SUPABASE_URL=https://yldexvlmrpsmcehsopad.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+VITE_SUPABASE_PROJECT_ID=yldexvlmrpsmcehsopad
+```
+
+**Note:** These are public keys and safe to commit. Never commit private keys!
+
+### Available Scripts
+
+```bash
+# Start development server (with hot reload)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+
+# Run type checking
+npm run type-check
+
+# Lint code
+npm run lint
+```
 
 ### Database Setup
 
