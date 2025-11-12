@@ -25,6 +25,7 @@ export type Database = {
           quantity: number
           received_date: string
           supplier_id: string | null
+          updated_at: string
         }
         Insert: {
           batch_number: string
@@ -34,8 +35,9 @@ export type Database = {
           id?: string
           product_id: string
           quantity?: number
-          received_date?: string
+          received_date: string
           supplier_id?: string | null
+          updated_at?: string
         }
         Update: {
           batch_number?: string
@@ -47,6 +49,7 @@ export type Database = {
           quantity?: number
           received_date?: string
           supplier_id?: string | null
+          updated_at?: string
         }
         Relationships: [
           {
@@ -74,6 +77,7 @@ export type Database = {
           location: string | null
           name: string
           phone: string | null
+          updated_at: string
         }
         Insert: {
           contact_person?: string | null
@@ -83,6 +87,7 @@ export type Database = {
           location?: string | null
           name: string
           phone?: string | null
+          updated_at?: string
         }
         Update: {
           contact_person?: string | null
@@ -92,6 +97,7 @@ export type Database = {
           location?: string | null
           name?: string
           phone?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
@@ -101,18 +107,21 @@ export type Database = {
           description: string | null
           id: string
           name: string
+          updated_at: string
         }
         Insert: {
           created_at?: string
           description?: string | null
           id?: string
           name: string
+          updated_at?: string
         }
         Update: {
           created_at?: string
           description?: string | null
           id?: string
           name?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -176,7 +185,7 @@ export type Database = {
           edition: string | null
           id: string
           isbn: string | null
-          reorder_level: number | null
+          reorder_level: number
           sku: string | null
           title: string
           updated_at: string
@@ -189,7 +198,7 @@ export type Database = {
           edition?: string | null
           id?: string
           isbn?: string | null
-          reorder_level?: number | null
+          reorder_level?: number
           sku?: string | null
           title: string
           updated_at?: string
@@ -202,7 +211,7 @@ export type Database = {
           edition?: string | null
           id?: string
           isbn?: string | null
-          reorder_level?: number | null
+          reorder_level?: number
           sku?: string | null
           title?: string
           updated_at?: string
@@ -281,7 +290,7 @@ export type Database = {
           expected_delivery?: string | null
           id?: string
           notes?: string | null
-          order_date?: string
+          order_date: string
           po_number: string
           received_date?: string | null
           status?: string
@@ -318,7 +327,6 @@ export type Database = {
           created_at: string
           discount_amount: number | null
           discount_percentage: number | null
-          due_date: string | null
           id: string
           invoice_date: string
           invoice_number: string
@@ -334,15 +342,14 @@ export type Database = {
           created_at?: string
           discount_amount?: number | null
           discount_percentage?: number | null
-          due_date?: string | null
           id?: string
-          invoice_date?: string
+          invoice_date: string
           invoice_number: string
           notes?: string | null
           paid_amount?: number | null
           status?: string
-          subtotal?: number
-          total_amount?: number
+          subtotal: number
+          total_amount: number
           updated_at?: string
         }
         Update: {
@@ -350,7 +357,6 @@ export type Database = {
           created_at?: string
           discount_amount?: number | null
           discount_percentage?: number | null
-          due_date?: string | null
           id?: string
           invoice_date?: string
           invoice_number?: string
@@ -373,7 +379,7 @@ export type Database = {
       }
       sales_items: {
         Row: {
-          batch_id: string | null
+          batch_id: string
           created_at: string
           id: string
           product_id: string
@@ -385,7 +391,7 @@ export type Database = {
           unit_price: number
         }
         Insert: {
-          batch_id?: string | null
+          batch_id: string
           created_at?: string
           id?: string
           product_id: string
@@ -397,7 +403,7 @@ export type Database = {
           unit_price: number
         }
         Update: {
-          batch_id?: string | null
+          batch_id?: string
           created_at?: string
           id?: string
           product_id?: string
@@ -506,7 +512,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin"
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -634,7 +640,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin"],
+      app_role: ["admin", "user"],
     },
   },
 } as const
