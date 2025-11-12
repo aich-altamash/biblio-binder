@@ -1,73 +1,310 @@
-# Welcome to your Lovable project
+# Book Inventory Management System
 
-## Project info
+A comprehensive, modern web-based inventory management system specifically designed for book distribution across school campuses. Built with React, TypeScript, and Lovable Cloud (Supabase) backend.
 
-**URL**: https://lovable.dev/projects/fc1e9cdb-27d0-47bb-a9de-0aa766ac1c83
+## 🌟 Features
 
-## How can I edit this code?
+### Core Modules
 
-There are several ways of editing your application.
+#### 📚 Product Management
+- Complete book catalog with ISBN/SKU tracking
+- Author and edition management
+- Category organization (subjects/genres)
+- CRUD operations for all book information
 
-**Use Lovable**
+#### 🏢 Supplier Management
+- Supplier contact information and terms
+- Per-item pricing by supplier
+- Delivery time tracking
+- Purchase agreement management
+- Supplier performance analytics
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fc1e9cdb-27d0-47bb-a9de-0aa766ac1c83) and start prompting.
+#### 📦 Purchasing & Procurement
+- Create and manage purchase orders
+- Receive goods and update inventory
+- Batch tracking with lot numbers
+- Cost price recording per batch
+- PO status tracking (pending/received)
+- PDF generation for purchase orders
 
-Changes made via Lovable will be committed automatically to this repo.
+#### 📊 Inventory Management
+- Central warehouse stock tracking
+- Batch-level inventory control
+- Stock in/out logging
+- Expiry date tracking
+- Real-time inventory valuation
+- Low stock alerts
+- Complete audit trail via inventory logs
 
-**Use your preferred IDE**
+#### 💰 Sales & Distribution
+- Sales invoice creation for campuses
+- Multiple items per invoice support
+- Discount management (percentage-based)
+- Automatic profit calculation
+- FIFO stock deduction
+- Payment tracking (paid/pending/partial)
+- Outstanding dues management
+- PDF invoice generation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+#### 🏫 Campus Management
+- Manage multiple school campuses
+- Campus-specific sales tracking
+- Contact person and location details
+- Payment history per campus
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+#### 📈 Reporting & Analytics
+- **Inventory Valuation Reports**: Total stock value by product and batch
+- **Supplier Reports**: Purchase analysis, spend tracking, pending orders
+- **Campus Sales Reports**: Sales performance, profit analysis, outstanding amounts
+- **Profit & Loss Statements**: Revenue, COGS, profit margins
+- **Dashboard KPIs**: Real-time metrics and insights
+- **CSV Export**: All reports exportable to CSV format
 
-Follow these steps:
+#### ⚙️ System Settings
+- Company information management
+- Central warehouse configuration
+- Tax rate and currency settings
+- Business preferences
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+### Technical Features
+
+- 🔐 **Authentication**: Secure admin login with Lovable Cloud Auth
+- 💾 **PostgreSQL Database**: Robust relational database with RLS policies
+- 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile
+- 🎨 **Modern UI**: Built with shadcn/ui components and Tailwind CSS
+- 📄 **PDF Generation**: Professional invoices and purchase orders
+- 📊 **CSV Export**: Easy data export for external analysis
+- 🔄 **Real-time Updates**: Instant data synchronization
+- 🛡️ **Type Safety**: Full TypeScript implementation
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm installed
+- Git for version control
+
+### Installation
+
+1. **Clone the repository**
+```bash
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. **Install dependencies**
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. **Set up environment variables**
+
+Create a `.env` file in the root directory with your Supabase credentials:
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+```
+
+4. **Start the development server**
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will be available at `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Database Setup
 
-**Use GitHub Codespaces**
+The database schema will be automatically created when you enable Lovable Cloud. The system includes:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **products**: Book catalog
+- **categories**: Product categorization
+- **suppliers**: Supplier information
+- **purchase_orders**: PO management
+- **purchase_items**: PO line items
+- **batches**: Inventory batches
+- **inventory_logs**: Stock movement tracking
+- **sales_invoices**: Sales orders
+- **sales_items**: Invoice line items
+- **campuses**: Campus locations
+- **system_settings**: Application configuration
 
-## What technologies are used for this project?
+## 📖 Usage Guide
 
-This project is built with:
+### First Time Setup
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. **Login**: Use the authentication page to sign in
+2. **Configure Settings**: Go to Settings and add your company information
+3. **Add Categories**: Create product categories (subjects/genres)
+4. **Add Suppliers**: Enter supplier details and pricing
+5. **Add Products**: Build your book catalog
+6. **Add Campuses**: Set up your school campus locations
 
-## How can I deploy this project?
+### Daily Operations
 
-Simply open [Lovable](https://lovable.dev/projects/fc1e9cdb-27d0-47bb-a9de-0aa766ac1c83) and click on Share -> Publish.
+#### Creating a Purchase Order
+1. Navigate to **Purchasing**
+2. Click **Create Purchase Order**
+3. Select supplier and add products with quantities
+4. Submit the order
 
-## Can I connect a custom domain to my Lovable project?
+#### Receiving Inventory
+1. Go to **Purchasing** and find your PO
+2. Click **Receive** on the pending order
+3. Enter batch details (batch number, expiry date if applicable)
+4. Confirm receipt to update inventory
 
-Yes, you can!
+#### Creating a Sales Invoice
+1. Navigate to **Sales**
+2. Click **Create Invoice**
+3. Select campus and add products from available batches
+4. Set unit prices (system shows cost and calculates profit)
+5. Apply discounts if needed
+6. Enter payment amount
+7. Submit to create invoice and update inventory
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+#### Viewing Reports
+1. Go to **Reports** to see:
+   - Inventory valuation
+   - Supplier performance
+   - Campus sales analysis
+   - Profit & loss summary
+2. Export any report to CSV for further analysis
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 🏗️ Technical Architecture
+
+### Frontend Stack
+- **React 18**: Modern React with hooks
+- **TypeScript**: Full type safety
+- **Vite**: Lightning-fast build tool
+- **Tailwind CSS**: Utility-first styling
+- **shadcn/ui**: High-quality component library
+- **React Router**: Client-side routing
+- **TanStack Query**: Data fetching and caching
+- **date-fns**: Date manipulation
+- **jsPDF**: PDF generation
+- **Lucide Icons**: Beautiful icon library
+
+### Backend Stack
+- **Lovable Cloud (Supabase)**: PostgreSQL database and authentication
+- **Row Level Security (RLS)**: Database-level security policies
+- **Real-time subscriptions**: Live data updates
+- **RESTful API**: Auto-generated from database schema
+
+### Project Structure
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components
+│   ├── AppSidebar.tsx  # Navigation sidebar
+│   ├── DashboardLayout.tsx
+│   └── NavLink.tsx
+├── pages/              # Application pages
+│   ├── Auth.tsx        # Login page
+│   ├── Dashboard.tsx   # Main dashboard
+│   ├── Products.tsx    # Product management
+│   ├── Suppliers.tsx   # Supplier management
+│   ├── Purchasing.tsx  # Purchase orders
+│   ├── Inventory.tsx   # Inventory tracking
+│   ├── Sales.tsx       # Sales invoices
+│   ├── Campuses.tsx    # Campus management
+│   ├── Reports.tsx     # Reports & analytics
+│   └── Settings.tsx    # System settings
+├── utils/              # Utility functions
+│   ├── pdfGenerator.ts # PDF generation
+│   └── csvExporter.ts  # CSV export
+├── integrations/       # External integrations
+│   └── supabase/       # Supabase client and types
+├── hooks/              # Custom React hooks
+├── lib/                # Library utilities
+└── main.tsx           # Application entry point
+```
+
+## 🔒 Security
+
+- All authentication handled by Lovable Cloud (Supabase Auth)
+- Row Level Security (RLS) policies on all database tables
+- Secure API key management via environment variables
+- Input validation and sanitization
+- Protected routes requiring authentication
+
+## 📱 Browser Support
+
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## 🤝 Contributing
+
+This is a Lovable project. To make changes:
+
+1. **Via Lovable**: Visit the project in Lovable and use the AI assistant
+2. **Via IDE**: Clone the repo, make changes, and push to trigger Lovable sync
+3. **Via GitHub**: Edit files directly on GitHub
+
+## 📄 License
+
+Copyright © 2025. All rights reserved.
+
+## 🔗 Links
+
+- **Lovable Project**: [View in Lovable](https://lovable.dev/projects/fc1e9cdb-27d0-47bb-a9de-0aa766ac1c83)
+- **Documentation**: [Lovable Docs](https://docs.lovable.dev)
+- **Support**: [Lovable Discord](https://discord.com/channels/1119885301872070706/1280461670979993613)
+
+## 🎯 Roadmap
+
+Completed features:
+- ✅ User authentication
+- ✅ Product catalog with categories
+- ✅ Supplier management
+- ✅ Purchase order system
+- ✅ Batch inventory tracking
+- ✅ Sales invoicing
+- ✅ Campus management
+- ✅ Comprehensive reporting
+- ✅ PDF invoice generation
+- ✅ CSV export functionality
+- ✅ System settings
+
+Future enhancements:
+- 📧 Email notifications for low stock
+- 📊 Advanced analytics and charts
+- 📱 Mobile app
+- 🔄 Automated reorder points
+- 📦 Barcode scanning
+- 🌐 Multi-language support
+
+## 💡 Tips
+
+- Use **Visual Edits** in Lovable for quick UI changes
+- Enable **Dev Mode** to view and edit code directly
+- All reports are exportable - use this for external analysis
+- Set up system settings first for professional invoices
+- Regular backups are recommended (use CSV exports)
+
+## 🐛 Troubleshooting
+
+**Can't log in?**
+- Ensure you've created a user account in Lovable Cloud
+- Check that environment variables are set correctly
+
+**Data not loading?**
+- Check browser console for errors
+- Verify Lovable Cloud is enabled and running
+- Ensure RLS policies are properly configured
+
+**PDF not downloading?**
+- Check browser popup blocker settings
+- Ensure system settings are configured
+
+## 📞 Support
+
+For support:
+1. Check [Lovable Documentation](https://docs.lovable.dev)
+2. Join [Lovable Discord Community](https://discord.com/channels/1119885301872070706/1280461670979993613)
+3. Contact support through Lovable platform
+
+---
+
+Built with ❤️ using [Lovable](https://lovable.dev) - The AI-powered web application builder

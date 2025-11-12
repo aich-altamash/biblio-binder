@@ -15,8 +15,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Eye, Trash2, DollarSign } from "lucide-react";
+import { Plus, Eye, Trash2, DollarSign, Download } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { generateInvoicePDF } from "@/utils/pdfGenerator";
 import {
   Select,
   SelectContent,
@@ -314,6 +315,53 @@ const Sales = () => {
       toast({
         title: "Error",
         description: error.message,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleDownloadPDF = async () => {
+    if (!selectedInvoice) return;
+
+    try {
+      // Fetch settings for company info
+      const { data: settings } = await supabase
+        .from("system_settings" as any)
+        .select("*")
+        .single();
+
+      const settingsData = settings as any;
+
+      const pdfData = {
+        invoice_number: selectedInvoice.invoice_number,
+        invoice_date: selectedInvoice.invoice_date,
+        campus_name: selectedInvoice.campuses?.name || "",
+        items: invoiceItems.map((item) => ({
+          product_title: item.product?.title || "",
+          quantity: item.quantity,
+          unit_price: item.unit_price,
+          total_price: item.total_price,
+        })),
+        subtotal: selectedInvoice.subtotal,
+        discount_percentage: selectedInvoice.discount_percentage || 0,
+        discount_amount: selectedInvoice.discount_amount || 0,
+        total_amount: selectedInvoice.total_amount,
+        company_name: settingsData?.company_name || "",
+        company_address: settingsData?.company_address || "",
+        company_phone: settingsData?.company_phone || "",
+        company_email: settingsData?.company_email || "",
+      };
+
+      generateInvoicePDF(pdfData);
+
+      toast({
+        title: "Success",
+        description: "Invoice PDF downloaded successfully",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to generate PDF",
         variant: "destructive",
       });
     }
@@ -661,7 +709,13 @@ const Sales = () => {
       <Dialog open={viewDialogOpen} onOpenChange={setViewDialogOpen}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>Invoice Details - {selectedInvoice?.invoice_number}</DialogTitle>
+            <div className="flex items-center justify-between">
+              <DialogTitle>Invoice Details - {selectedInvoice?.invoice_number}</DialogTitle>
+              <Button variant="outline" size="sm" onClick={handleDownloadPDF}>
+                <Download className="mr-2 h-4 w-4" />
+                Download PDF
+              </Button>
+            </div>
           </DialogHeader>
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">

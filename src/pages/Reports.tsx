@@ -10,9 +10,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, Package, Users, Building2, DollarSign } from "lucide-react";
+import { TrendingUp, Package, Users, Building2, DollarSign, Download } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  exportInventoryReport,
+  exportSupplierReport,
+  exportCampusReport,
+} from "@/utils/csvExporter";
 
 interface InventoryReport {
   product_title: string;
@@ -256,8 +262,17 @@ const Reports = () => {
 
         <TabsContent value="inventory">
           <Card>
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Inventory Valuation Report</CardTitle>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => exportInventoryReport(inventoryReport)}
+                disabled={inventoryReport.length === 0}
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Export CSV
+              </Button>
             </CardHeader>
             <CardContent>
               {loading ? (
@@ -307,8 +322,17 @@ const Reports = () => {
 
         <TabsContent value="suppliers">
           <Card>
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Supplier Performance Report</CardTitle>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => exportSupplierReport(supplierReport)}
+                disabled={supplierReport.length === 0}
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Export CSV
+              </Button>
             </CardHeader>
             <CardContent>
               {loading ? (
@@ -362,8 +386,17 @@ const Reports = () => {
 
         <TabsContent value="campuses">
           <Card>
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Campus Sales Report</CardTitle>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => exportCampusReport(campusReport)}
+                disabled={campusReport.length === 0}
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Export CSV
+              </Button>
             </CardHeader>
             <CardContent>
               {loading ? (

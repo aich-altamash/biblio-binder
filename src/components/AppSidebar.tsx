@@ -7,7 +7,8 @@ import {
   TrendingUp,
   Building2,
   LogOut,
-  PackageOpen
+  PackageOpen,
+  Settings as SettingsIcon
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -36,6 +37,7 @@ const menuItems = [
   { title: "Sales", url: "/sales", icon: FileText },
   { title: "Campuses", url: "/campuses", icon: Building2 },
   { title: "Reports", url: "/reports", icon: TrendingUp },
+  { title: "Settings", url: "/settings", icon: SettingsIcon },
 ];
 
 export function AppSidebar() {
